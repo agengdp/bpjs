@@ -19,8 +19,8 @@ class ServiceProvider  extends \Illuminate\Support\ServiceProvider{
      * @return void
      */
     public function boot(){
-        $this->publishes([
-            __DIR__ . '/../resources/config/bpjs.php'   => config_path('bpjs.php')
-        ]);
+        $this->app->configure('bpjs');
+        $path = realpath(__DIR__ .'/../resources/config/bpjs.php');
+        $this->mergeConfigFrom($path, 'bpjs');
     }
 }
