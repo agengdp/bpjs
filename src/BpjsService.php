@@ -50,13 +50,13 @@ class BpjsService{
      */
     private $service_name;
 
-    public function __construct($configurations)
+    public function __construct()
     {
         $this->clients = new Client([
             'verify' => false
         ]);
 
-        foreach ($configurations as $key => $val){
+        foreach (config('bpjs') as $key => $val){
             if (property_exists($this, $key)) {
                 $this->$key = $val;
             }
