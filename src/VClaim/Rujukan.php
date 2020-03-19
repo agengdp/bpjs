@@ -22,13 +22,14 @@ class Rujukan extends BpjsService
         return json_decode($response, true);
     }
 
-    public function cariByNoRujukan($searchBy, $keyword)
+    public function cariByNoRujukan($keyword, $searchBy = '')
     {
-        if ($searchBy == 'RS') {
+        if(empty($searchBy)){
+            $url = 'Rujukan/'.$keyword;            
+        }else{
             $url = 'Rujukan/RS/'.$keyword;
-        } else {
-            $url = 'Rujukan/'.$keyword;
         }
+
         $response = $this->get($url);
         return json_decode($response, true);
     }
