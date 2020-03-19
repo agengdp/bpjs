@@ -1,7 +1,7 @@
 <?php
-namespace Nsulistiyawan\Bpjs\VClaim;
+namespace agengdp\Bpjs\VClaim;
 
-use Nsulistiyawan\Bpjs\BpjsService;
+use agengdp\Bpjs\BpjsService;
 
 class Rujukan extends BpjsService
 {
