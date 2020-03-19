@@ -17,5 +17,12 @@
     },
     "require": {
         "guzzlehttp/guzzle": "~6.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\agengdp\\Providers\\ServiceProvider\\"
+            ]
+        }
     }
 }
