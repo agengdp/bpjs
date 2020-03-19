@@ -138,7 +138,7 @@ class BpjsService{
         try {
             $response = $this->client->request(
                 'PUT',
-                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                $this->service_name . '/' . $feature,
                 [
                     'headers' => $this->headers,
                     'json' => $data,
@@ -157,7 +157,7 @@ class BpjsService{
         try {
             $response = $this->client->request(
                 'DELETE',
-                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                $this->service_name . '/' . $feature,
                 [
                     'headers' => $this->headers,
                     'json' => $data,
