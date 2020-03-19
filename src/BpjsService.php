@@ -1,5 +1,5 @@
 <?php
-namespace Nsulistiyawan\Bpjs;
+namespace agengdp\Bpjs;
 
 use GuzzleHttp\Client;
 
@@ -9,7 +9,7 @@ class BpjsService{
      * Guzzle HTTP Client object
      * @var \GuzzleHttp\Client
      */
-    private $clients;
+    private $client;
 
     /**
      * Request headers
@@ -52,8 +52,9 @@ class BpjsService{
 
     public function __construct()
     {
-        $this->clients = new Client([
-            'verify' => false
+        $this->client = new Client([
+            'verify'    => false,
+            'base_uri'  => config('bpjs.base_url')
         ]);
 
         foreach (config('bpjs') as $key => $val){
@@ -94,11 +95,12 @@ class BpjsService{
 
     protected function get($feature)
     {
+
         $this->headers['Content-Type'] = 'application/json; charset=utf-8';
         try {
-            $response = $this->clients->request(
+            $response = $this->client->request(
                 'GET',
-                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                $this->service_name . '/' . $feature,
                 [
                     'headers' => $this->headers
                 ]
@@ -116,9 +118,9 @@ class BpjsService{
             $this->headers = array_merge($this->headers,$headers);
         }
         try {
-            $response = $this->clients->request(
+            $response = $this->client->request(
                 'POST',
-                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                $this->service_name . '/' . $feature,
                 [
                     'headers' => $this->headers,
                     'json' => $data,
@@ -134,7 +136,7 @@ class BpjsService{
     {
         $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
         try {
-            $response = $this->clients->request(
+            $response = $this->client->request(
                 'PUT',
                 $this->base_url . '/' . $this->service_name . '/' . $feature,
                 [
@@ -153,7 +155,7 @@ class BpjsService{
     {
         $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
         try {
-            $response = $this->clients->request(
+            $response = $this->client->request(
                 'DELETE',
                 $this->base_url . '/' . $this->service_name . '/' . $feature,
                 [
